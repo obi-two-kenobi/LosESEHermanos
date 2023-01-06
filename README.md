@@ -14,10 +14,10 @@ least 5 constraints)
 - [X] Allocate the diagrams to each other in an allocation diagram
 - [X] Refine the architecture (block diagrams) with the help of internal
 block diagrams (add at least 5 blocks)
-- [ ] Define the behavior with state machines of at least 3 components
+- [X] Define the behavior with state machines of at least 3 components
 - [ ] Show / argument that the state machine behavior fulfills (refines) the interaction behavior (as modeled in the analysis phase)
-- [ ] Show partly the implementation level of one block including the state machine behavior
-     - [ ] Including the mapping to prototype Hardware (Arduino, Raspberry P, tinkercad) - Mapping should be done in a structured way ( Blocks, State machines, ...)
+- [X] Show partly the implementation level of one block including the state machine behavior
+     - [X] Including the mapping to prototype Hardware (Arduino, Raspberry P, tinkercad) - Mapping should be done in a structured way ( Blocks, State machines, ...)
 ### TASK 5
 #### SCHEDULING
 - [ ] Brake down the specified requirements to the level of scheduling
