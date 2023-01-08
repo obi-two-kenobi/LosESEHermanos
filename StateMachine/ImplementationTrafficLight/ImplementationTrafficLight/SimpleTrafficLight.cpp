@@ -56,16 +56,11 @@ void SimpleTrafficLight::HandleTransition(Transition transition) {
                 _normalRoutineState = NormalRoutineState::RED;
                 return;
             }
-            
-            
             if (this->IsBlinkingYellowTime() || transition == Transition::BLINKING_YELLOW) {
                 _state=State::BlinkingYellow;
                 _normalRoutineState = NormalRoutineState::YELLOW;
                 return;
             }
-            
-            
-            
             {
                 
                 auto result = this->NormalRoutine(this ->_transition, this->_normalRoutineState);
