@@ -252,10 +252,13 @@ private:
 };
 
 void SimpleTrafficLight::BlinkingYellowRoutine(struct pt *pt){
+     auto begin = micros();
   digitalWrite(_pinYellow, HIGH);
     this->Delay(300);
     digitalWrite(_pinYellow, LOW);
     this->Delay(300);
+        auto now = micros();
+    Serial.printf("SimpleTrafficLight::BlinkingYellowRoutine() Takes %d uS",now-begin)
 }
 
 void SimpleTrafficLight::EmergencyVehicleRoutine(struct pt *pt)
@@ -387,12 +390,13 @@ void SimpleTrafficLight::InitialFeedback(){
 }
 void SimpleTrafficLight::Update()
 {
-   
+   auto begin = micros();
     this->HandleTransition();
     this->Feedback();
     //this->Delay(10000000);
     //this->HandleTransition(Transition::EMERGENCY_VEHICLE);
-    
+    auto now = micros();
+    Serial.printf("SimpleTrafficLight::Update() Takes %d uS",now-begin)
     
     
         
@@ -421,7 +425,7 @@ void SimpleTrafficLight::Feedback()
 void SimpleTrafficLight::HandleTransition(Transition transition) {
     
     
-    
+       auto begin = micros();
     switch (_state) {
         case State::NormalRoutine:
                 if(transition == Transition::EMERGENCY_VEHICLE || sim_IsVehicleComing())
@@ -495,6 +499,8 @@ void SimpleTrafficLight::HandleTransition(Transition transition) {
         default:
             break;
     }
+    auto now = micros();
+    Serial.printf("SimpleTrafficLight::HandleTransition(...) Takes %d uS",now-begin)
 }
 
 
