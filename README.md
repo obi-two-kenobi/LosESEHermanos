@@ -22,11 +22,11 @@ block diagrams (add at least 5 blocks)
 #### SCHEDULING
 - [X] Brake down the specified requirements to the level of scheduling
 - [X] Define (test or analysis) the computation time (worst case) of the tasks of the component you implement
-- [ ] Use pyCPA (https://pycpa.readthedocs.io/en/latest/) – if possible or calculate the wcet via knowledge of the hardware
-- [ ] Specify all scheduling constraints based on the requirements
-- [ ] Show that the implemented component with its set of tasks is scheduable (EDF or RMS or both).
+- [X] Use pyCPA (https://pycpa.readthedocs.io/en/latest/) – if possible or calculate the wcet via knowledge of the hardware
+- [X] Specify all scheduling constraints based on the requirements
+- [X] Show that the implemented component with its set of tasks is scheduable (EDF or RMS or both).
 #### V& V
-##### INSPECTION
+##### INSPECTION (Giuseppe Anal)
 - [ ] All team members have to do one inspection of a document
 (Model, source code, ...) of an other team member
      -  E.g. Team member A developed the requirements and team member B inspects the requirements
@@ -34,7 +34,7 @@ block diagrams (add at least 5 blocks)
           - Describe shortly the inspected document including the review
           - Positive and negative points
           -Negative points should have influence of an updated version of the document
-##### TESTING
+##### TESTING (Jacko)
 
 - [ ] Define and execute 5 unit tests as validation tests  E.g. use the Junit or Cunit Framework
 - [ ] Show the relation / trace to the requirements
