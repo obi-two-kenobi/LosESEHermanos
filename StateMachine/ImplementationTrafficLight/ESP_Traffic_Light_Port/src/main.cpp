@@ -5,6 +5,7 @@ std::list<int> HandleTransitionTimes, UpdateTimes;
 void setup() {
   Serial.begin(115200);
   Serial.println("Hello World!");
+  pinMode(18,OUTPUT);
 }
 
 void loop() {
@@ -13,6 +14,7 @@ void loop() {
   while (true)
   {
     ampel.Update();
+    /*
     if(UpdateTimes.size()>=100){
       std::cout<<"Update Times:\n";
       for(auto& time : UpdateTimes){
@@ -32,6 +34,23 @@ void loop() {
       }
       
     }
+    */
+
+  
+   
+    for(int i =0; i< 100; i++){
+      auto begin = micros();
+      digitalWrite(18,HIGH);
+      auto end = micros();
+      std::cout << end-begin << ", ";
+    }
+    std::cout << std::endl;
+    while (true)
+    {
+      delay(1000);
+    }
+    
+    
   }
   
 }
