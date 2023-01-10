@@ -8,6 +8,9 @@
 #ifndef SimpleTrafficLight_hpp
 #define SimpleTrafficLight_hpp
 #include "utils.hpp"
+#include<list>
+
+extern std::list<int> HandleTransitionTimes, UpdateTimes;
 class SimpleTrafficLight: public TrafficLight
 {
 public:

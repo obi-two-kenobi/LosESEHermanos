@@ -6,6 +6,10 @@
 //
 
 #include "SimpleTrafficLight.hpp"
+#include <Arduino.h>
+
+
+
 SimpleTrafficLight::SimpleTrafficLight(State state,NormalRoutineTransition transition,std::string name,double delay)
 :_state(state),_transition(transition),_name( name),_delay(delay), _normalRoutineState(NormalRoutineState::RED)
 {
@@ -19,12 +23,14 @@ void SimpleTrafficLight::InitialFeedback(){
 }
 void SimpleTrafficLight::Update()
 {
-   
+   auto begin = micros();
+    
     this->HandleTransition();
     this->Delay(_delay);
     this->Feedback();
     
-    
+    auto end = micros();
+    UpdateTimes.push_front(end-begin);
         
 }
 void SimpleTrafficLight::Delay(unsigned int milliseconds)
@@ -47,7 +53,8 @@ void SimpleTrafficLight::Feedback()
 void SimpleTrafficLight::HandleTransition(Transition transition) {
     
     
-    
+    auto begin = micros();
+
     switch (_state) {
         case State::NormalRoutine:
             if(transition == Transition::EMERGENCY_VEHICLE)
@@ -129,7 +136,8 @@ void SimpleTrafficLight::HandleTransition(Transition transition) {
     }
     
     
-    
+    auto end = micros();
+    HandleTransitionTimes.push_back(end-begin); 
     
 
 }
