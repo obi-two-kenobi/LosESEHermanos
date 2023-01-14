@@ -42,11 +42,12 @@ public:
 //                   printf("%s\n", inbuf);
 //            close(_pipe[0]);
 //        };
-        
-          return  [this] { while(1) this->Update(); } ;
+
+        //   return  [this] { while(1) this->Update(); } ;
+        return [this](std::stop_token stop_token)
+        { while(!stop_token.stop_requested()) this->Update(); };
     }
-    
-    
+
     void setPipe(int* newPipe)
     {
         _pipe = newPipe;
@@ -66,9 +67,21 @@ public:
     {
         return _ColorPipe;
     }
+    
+    void setStatePipe(int* newPipe)
+    {
+        _StatePipe = newPipe;
+    }
+    
+    int* getStatePipe()
+    {
+        return _StatePipe;
+    }
+
 protected:
     int* _pipe;
     int* _ColorPipe;
+    int* _StatePipe = NULL;
 private:
     
     

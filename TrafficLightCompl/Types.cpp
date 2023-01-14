@@ -18,8 +18,17 @@ std::ostream& operator << ( std::ostream& outs, const NormalRoutineState& p )
         case NormalRoutineState::GREEN:
             return outs <<  "GREEN" ;
             break;
+        case NormalRoutineState::YELLOWRED:
+            return outs <<  "YELLOWRED" ;
+            break;
+        case NormalRoutineState::BLACK:
+            return outs <<  "BLACK" ;
+            break;
+        case NormalRoutineState::ERROR:
+            return outs <<  "ERROR" ;
+            break;
         default:
-            return outs << "ERROR";
+            return outs << "I'VE FORGOTTEN TO DEFINE THIS STATE";
             break;
     }
 }
@@ -89,29 +98,29 @@ NormalRoutineTransition operator++( NormalRoutineTransition &c, int ) {
 
 std::ostream& operator << ( std::ostream& outs, const Transition& p ){
     switch (p) {
-        case Transition::ERROR:
+        case Transition::ERROR :
             return outs << "ERROR";
             break;
         case Transition::ERROR_FIXED:
             return outs << "ERROR_FIXED";
             break;
         case Transition::EMERGENCY_VEHICLE:
-            return outs << "GREEN_TO_YELLOW";
+            return outs << "EMERGENCY_VEHICLE";
             break;
         case Transition::EMERGENCY_VEHICLE_PASSED:
-            return outs << "YELLOW_TO_RED";
+            return outs << "EMERGENCY_VEHICLE_PASSED";
             break;
         case Transition::ERROR_UNFIXABLE:
             return outs << "ERROR_UNFIXABLE";
             break;
         case Transition::NONE:
-            return outs <<  "NONE" ;
+            return outs << "NONE";
             break;
-        case Transition::BLINKING_YELLOW:
-            return outs <<  "BLINKING_YELLOW" ;
+        case Transition::BLINKING_YELLOW :
+            return outs << "BLINKING_YELLOW";
             break;
         case Transition::BLINKING_YELLOW_STOP:
-            return outs <<  "BLINKING_YELLOW_STOP" ;
+            return outs << "BLINKING_YELLOW_STOP";
             break;
         case Transition::RED_TO_YELLOW:
             return outs << "RED_TO_YELLOW";
@@ -125,8 +134,14 @@ std::ostream& operator << ( std::ostream& outs, const Transition& p ){
         case Transition::YELLOW_TO_RED:
             return outs << "YELLOW_TO_RED";
             break;
+        case Transition::ODD:
+            return outs << "ODD";
+            break;
+        case Transition::EVEN:
+            return outs << "EVEN";
+            break;
         default:
-            return outs << "ERROR";
+            return outs << "I'VE FORGOTTEN TO DEFINE THIS TRANSITION";
             break;
     }
 }

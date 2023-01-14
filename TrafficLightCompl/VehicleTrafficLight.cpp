@@ -7,6 +7,9 @@
 
 #include "VehicleTrafficLight.hpp"
 
+#if DEBUG
+static std::mutex tMutex;
+#endif
 
 VehicleTrafficLight::VehicleTrafficLight(NormalRoutineState state,NormalRoutineTransition transition,std::string name,double delay)
 :_state(State::Idle),_transition(transition),_name( name),_delay(delay), _normalRoutineState(NormalRoutineState::RED)
@@ -49,11 +52,19 @@ void VehicleTrafficLight::Update()
         try {
              temp = static_cast<Transition>(std::stoi(std::string(inbuf)));
         } catch (...) {}
-        
+
+#if DEBUG
+        tMutex.lock();
+        std::cout << "Name: " << _name << " Trans: " << temp << "; Before: " << _state << ' ' << _normalRoutineState;
+#endif
         this->HandleTransition(temp);
+#if DEBUG
+        std::cout << "; After: " << _state << ' ' << _normalRoutineState << std::endl;
+        tMutex.unlock();
+#endif
         this->Delay(_delay);
         this->Draw();
-        
+
         //close(_pipe[0]);
     }
         
@@ -112,11 +123,11 @@ void VehicleTrafficLight::HandleTransition(Transition transition) {
                 //std::cout << temp;
                 auto result = this->NormalRoutine(TO_NRT(temp), this->_normalRoutineState);
                 //std::cout <<transition<<std::endl;
-                if (result != NormalRoutineState::ERROR) {
+                // if (result != NormalRoutineState::ERROR) {
                     
-                    this->_normalRoutineState = result;
+                this->_normalRoutineState = result;
                     
-                }
+                // }
 //                else
 //                {
 //
@@ -211,26 +222,9 @@ void VehicleTrafficLight::HandleTransition(Transition transition) {
 
 void VehicleTrafficLight::Draw()
 {
-    std::string toSend = ANSI_RED;
-    switch (_normalRoutineState) {
-        case NormalRoutineState::RED:
-            toSend = ANSI_RED;
-            break;
-            
-        case NormalRoutineState::YELLOW:
-            toSend = ANSI_YELLOW;
-            break;
-        
-        case NormalRoutineState::GREEN:
-            toSend = ANSI_GREEN;
-            break;
-        case NormalRoutineState::BLACK:
-            toSend = ANSI_BLACK;
-            break;
-        default:
-            break;
-    }
-    toSend =toSend;//+s+ _name;
-    write(_pipe[1], toSend.c_str(), MSGSIZE);
-}
+    write(_pipe[1], std::to_string(TO_INT(_normalRoutineState)).c_str(), MSGSIZE);
 
+    if (_StatePipe != NULL){
+        write(_StatePipe[1], std::to_string(TO_INT(_state)).c_str(), MSGSIZE);
+    }
+}

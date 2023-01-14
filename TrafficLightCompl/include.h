@@ -26,4 +26,5 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <mutex>
+#include <cstring>
 #endif /* include_h */

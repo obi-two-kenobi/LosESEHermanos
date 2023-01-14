@@ -7,6 +7,6 @@ fi
 
 
     echo "Compiling new file..."
-g++ -std=c++17 ./*.cpp  -o TrafficLightThreads
+g++ -std=c++20 ./*.cpp  -o TrafficLightThreads
     echo "Launching..."
 ./TrafficLightThreads

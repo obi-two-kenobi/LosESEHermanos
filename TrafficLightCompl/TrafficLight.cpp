@@ -12,16 +12,30 @@ NormalRoutineState TrafficLight::NormalRoutine(NormalRoutineTransition transitio
     switch (_state) {
         case NormalRoutineState::RED:
             if (transition == NormalRoutineTransition::RED_TO_YELLOW) {
-                return NormalRoutineState::YELLOW;
+                return NormalRoutineState::YELLOWRED;
+            }
+            if (TO_INT(transition) == TO_INT(Transition::NONE)){
+                return _state;
             }
             return NormalRoutineState::ERROR;
             break;
             
         case NormalRoutineState::YELLOW:
+            if (transition == NormalRoutineTransition::YELLOW_TO_RED){
+                return NormalRoutineState::RED;
+            }
+            if (TO_INT(transition) == TO_INT(Transition::NONE)){
+                return _state;
+            }
+            return NormalRoutineState::ERROR;
+            break;
+            
+        case NormalRoutineState::YELLOWRED:
             if (transition == NormalRoutineTransition::YELLOW_TO_GREEN) {
                 return NormalRoutineState::GREEN;
-            }else if (transition == NormalRoutineTransition::YELLOW_TO_RED){
-                return NormalRoutineState::RED;
+            }
+            if (TO_INT(transition) == TO_INT(Transition::NONE)){
+                return _state;
             }
             return NormalRoutineState::ERROR;
             break;
@@ -30,10 +44,19 @@ NormalRoutineState TrafficLight::NormalRoutine(NormalRoutineTransition transitio
             if (transition==NormalRoutineTransition::GREEN_TO_YELLOW) {
                 return  NormalRoutineState::YELLOW;
             }
+            if (TO_INT(transition) == TO_INT(Transition::NONE)){
+                return _state;
+            }
             return NormalRoutineState::ERROR;
             break;
             
         default:
+            if (TO_INT(transition) == TO_INT(Transition::ERROR_FIXED)){
+                return NormalRoutineState::RED;
+            }
+            if (TO_INT(transition) == TO_INT(Transition::NONE)){
+                return _state;
+            }
             return NormalRoutineState::ERROR;
             break;
     }
