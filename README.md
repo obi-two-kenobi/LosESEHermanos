@@ -27,7 +27,7 @@ block diagrams (add at least 5 blocks)
 - [X] Show that the implemented component with its set of tasks is scheduable (EDF or RMS or both).
 #### V& V
 ##### INSPECTION (Giuseppe Anal)
-- [ ] All team members have to do one inspection of a document
+- [X] All team members have to do one inspection of a document
 (Model, source code, ...) of an other team member
      -  E.g. Team member A developed the requirements and team member B inspects the requirements
 - [ ] Documentation of inspection
