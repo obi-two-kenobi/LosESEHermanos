@@ -40,4 +40,4 @@ block diagrams (add at least 5 blocks)
 - [ ] Show the relation / trace to the requirements
 - [X] Define at least 5 defect test
 - [X] Define and execute 3 component / interface tests of the implemented block
-- [ ] Implement a component/block in a test driven based way
+- [X] Implement a component/block in a test driven based way
