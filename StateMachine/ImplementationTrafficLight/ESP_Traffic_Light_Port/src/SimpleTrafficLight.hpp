@@ -9,8 +9,10 @@
 #define SimpleTrafficLight_hpp
 #include "utils.hpp"
 #include<list>
+#define RED_LED 4
+#define YELLOW_LED 5
+#define GREEN_LED 6
 
-extern std::list<int> HandleTransitionTimes, UpdateTimes;
 class SimpleTrafficLight: public TrafficLight
 {
 public:

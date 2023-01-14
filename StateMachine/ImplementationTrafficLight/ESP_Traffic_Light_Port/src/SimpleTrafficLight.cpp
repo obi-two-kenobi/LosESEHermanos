@@ -23,14 +23,11 @@ void SimpleTrafficLight::InitialFeedback(){
 }
 void SimpleTrafficLight::Update()
 {
-   auto begin = micros();
     
     this->HandleTransition();
     this->Delay(_delay);
     this->Feedback();
     
-    auto end = micros();
-    UpdateTimes.push_front(end-begin);
         
 }
 void SimpleTrafficLight::Delay(unsigned int milliseconds)
@@ -45,6 +42,28 @@ void SimpleTrafficLight::Delay(unsigned int milliseconds)
 void SimpleTrafficLight::Feedback()
 {
     std::cout <<"[" << _name << "]->["<<_state <<"]->["<<_normalRoutineState << "] with "<<_transition<<std::endl;
+    switch(_normalRoutineState){
+        case NormalRoutineState::RED:
+            digitalWrite(RED_LED, HIGH);
+            digitalWrite(GREEN_LED, LOW);
+            digitalWrite(YELLOW_LED, LOW);
+            break;
+        case NormalRoutineState::YELLOW:
+            digitalWrite(YELLOW_LED, HIGH);
+            digitalWrite(RED_LED, LOW);
+            digitalWrite(GREEN_LED, LOW);
+            break;
+        case NormalRoutineState::GREEN:
+            digitalWrite(GREEN_LED, HIGH);
+            digitalWrite(RED_LED, LOW);
+            digitalWrite(YELLOW_LED, LOW);
+            break;
+        case NormalRoutineState::ERROR:
+            digitalWrite(RED_LED, HIGH);
+            digitalWrite(YELLOW_LED, HIGH);
+            digitalWrite(GREEN_LED, HIGH);
+            break;
+    }
 }
 
 
@@ -53,8 +72,6 @@ void SimpleTrafficLight::Feedback()
 void SimpleTrafficLight::HandleTransition(Transition transition) {
     
     
-    auto begin = micros();
-
     switch (_state) {
         case State::NormalRoutine:
             if(transition == Transition::EMERGENCY_VEHICLE)
@@ -64,6 +81,7 @@ void SimpleTrafficLight::HandleTransition(Transition transition) {
                 return;
             }
             if (this->IsBlinkingYellowTime() || transition == Transition::BLINKING_YELLOW) {
+                
                 _state=State::BlinkingYellow;
                 _normalRoutineState = NormalRoutineState::YELLOW;
                 return;
@@ -134,11 +152,7 @@ void SimpleTrafficLight::HandleTransition(Transition transition) {
         default:
             break;
     }
-    
-    
-    auto end = micros();
-    HandleTransitionTimes.push_back(end-begin); 
-    
+        
 
 }
 
