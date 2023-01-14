@@ -26,7 +26,7 @@ block diagrams (add at least 5 blocks)
 - [X] Specify all scheduling constraints based on the requirements
 - [X] Show that the implemented component with its set of tasks is scheduable (EDF or RMS or both).
 #### V& V
-##### INSPECTION (Giuseppe Anal)
+##### INSPECTION
 - [X] All team members have to do one inspection of a document
 (Model, source code, ...) of an other team member
      -  E.g. Team member A developed the requirements and team member B inspects the requirements
@@ -34,7 +34,7 @@ block diagrams (add at least 5 blocks)
           - Describe shortly the inspected document including the review
           - Positive and negative points
           -Negative points should have influence of an updated version of the document
-##### TESTING (Jacko)
+##### TESTING
 
 - [X] Define and execute 5 unit tests as validation tests  E.g. use the Junit or Cunit Framework
 - [ ] Show the relation / trace to the requirements
