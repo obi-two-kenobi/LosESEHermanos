@@ -37,31 +37,38 @@ void SimpleTrafficLight::Delay(unsigned int milliseconds)
     std::this_thread::sleep_for(ms(milliseconds));
 }
 
-
-
 void SimpleTrafficLight::Feedback()
 {
-    std::cout <<"[" << _name << "]->["<<_state <<"]->["<<_normalRoutineState << "] with "<<_transition<<std::endl;
+    std::cout <<"[" << _name << "]->["
+              <<_state <<"]->["<<_normalRoutineState 
+              << "] with "<<_transition
+              <<std::endl;
+
+        digitalWrite(RED_LED, LOW);
+        digitalWrite(GREEN_LED, LOW);
+        digitalWrite(YELLOW_LED, LOW);
     switch(_normalRoutineState){
         case NormalRoutineState::RED:
             digitalWrite(RED_LED, HIGH);
-            digitalWrite(GREEN_LED, LOW);
-            digitalWrite(YELLOW_LED, LOW);
+            break;
+        case NormalRoutineState::YELLOWRED:
+            digitalWrite(YELLOW_LED, HIGH);
             break;
         case NormalRoutineState::YELLOW:
             digitalWrite(YELLOW_LED, HIGH);
-            digitalWrite(RED_LED, LOW);
-            digitalWrite(GREEN_LED, LOW);
             break;
         case NormalRoutineState::GREEN:
             digitalWrite(GREEN_LED, HIGH);
-            digitalWrite(RED_LED, LOW);
-            digitalWrite(YELLOW_LED, LOW);
             break;
-        case NormalRoutineState::ERROR:
-            digitalWrite(RED_LED, HIGH);
-            digitalWrite(YELLOW_LED, HIGH);
-            digitalWrite(GREEN_LED, HIGH);
+        case NormalRoutineState::EMERGENCY:
+            while (true)
+            {
+                digitalWrite(RED_LED, HIGH);
+                this->Delay(1000);
+                digitalWrite(RED_LED, LOW);
+                this->Delay(1000);
+            }
+            
             break;
     }
 }
