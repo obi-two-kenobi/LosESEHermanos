@@ -8,11 +8,6 @@
 #ifndef SimpleTrafficLight_hpp
 #define SimpleTrafficLight_hpp
 #include "utils.hpp"
-#include<list>
-#define RED_LED 4
-#define YELLOW_LED 5
-#define GREEN_LED 6
-
 class SimpleTrafficLight: public TrafficLight
 {
 public:

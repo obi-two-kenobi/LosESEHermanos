@@ -16,11 +16,14 @@
 #include <vector>
 #include <random>
 #include <csignal>
+#include <Arduino.h>
 #define ANSI_RED     "\x1b[31m"
 #define ANSI_GREEN   "\x1b[32m"
 #define ANSI_YELLOW  "\x1b[33m"
 #define ANSI_BLACK   "\x1b[0m"
-
+#define RED_LED 4
+#define YELLOW_LED 5
+#define GREEN_LED 6
 enum class Transition
 {
     ERROR  = 0,

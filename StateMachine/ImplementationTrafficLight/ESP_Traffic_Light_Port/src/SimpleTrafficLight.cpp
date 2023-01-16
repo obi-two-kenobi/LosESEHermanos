@@ -6,10 +6,6 @@
 //
 
 #include "SimpleTrafficLight.hpp"
-#include <Arduino.h>
-
-
-
 SimpleTrafficLight::SimpleTrafficLight(State state,NormalRoutineTransition transition,std::string name,double delay)
 :_state(state),_transition(transition),_name( name),_delay(delay), _normalRoutineState(NormalRoutineState::RED)
 {
@@ -23,10 +19,11 @@ void SimpleTrafficLight::InitialFeedback(){
 }
 void SimpleTrafficLight::Update()
 {
-    
+   
     this->HandleTransition();
     this->Delay(_delay);
     this->Feedback();
+    
     
         
 }
@@ -37,22 +34,17 @@ void SimpleTrafficLight::Delay(unsigned int milliseconds)
     std::this_thread::sleep_for(ms(milliseconds));
 }
 
+
+
 void SimpleTrafficLight::Feedback()
 {
-    std::cout <<"[" << _name << "]->["
-              <<_state <<"]->["<<_normalRoutineState 
-              << "] with "<<_transition
-              <<std::endl;
-
-        digitalWrite(RED_LED, LOW);
-        digitalWrite(GREEN_LED, LOW);
-        digitalWrite(YELLOW_LED, LOW);
+    std::cout <<"[" << _name << "]->["<<_state <<"]->["<<_normalRoutineState << "] with "<<_transition<<std::endl;
+    digitalWrite(RED_LED, LOW);
+    digitalWrite(GREEN_LED, LOW);
+    digitalWrite(YELLOW_LED, LOW);
     switch(_normalRoutineState){
         case NormalRoutineState::RED:
             digitalWrite(RED_LED, HIGH);
-            break;
-        case NormalRoutineState::YELLOWRED:
-            digitalWrite(YELLOW_LED, HIGH);
             break;
         case NormalRoutineState::YELLOW:
             digitalWrite(YELLOW_LED, HIGH);
@@ -60,7 +52,7 @@ void SimpleTrafficLight::Feedback()
         case NormalRoutineState::GREEN:
             digitalWrite(GREEN_LED, HIGH);
             break;
-        case NormalRoutineState::EMERGENCY:
+        case NormalRoutineState::ERROR:
             while (true)
             {
                 digitalWrite(RED_LED, HIGH);
@@ -79,6 +71,7 @@ void SimpleTrafficLight::Feedback()
 void SimpleTrafficLight::HandleTransition(Transition transition) {
     
     
+    
     switch (_state) {
         case State::NormalRoutine:
             if(transition == Transition::EMERGENCY_VEHICLE)
@@ -88,7 +81,6 @@ void SimpleTrafficLight::HandleTransition(Transition transition) {
                 return;
             }
             if (this->IsBlinkingYellowTime() || transition == Transition::BLINKING_YELLOW) {
-                
                 _state=State::BlinkingYellow;
                 _normalRoutineState = NormalRoutineState::YELLOW;
                 return;
@@ -159,7 +151,10 @@ void SimpleTrafficLight::HandleTransition(Transition transition) {
         default:
             break;
     }
-        
+    
+    
+    
+    
 
 }
 

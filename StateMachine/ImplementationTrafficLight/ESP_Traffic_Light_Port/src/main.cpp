@@ -1,4 +1,3 @@
-#include <Arduino.h>
 #include <iostream>
 #include "SimpleTrafficLight.hpp"
 void setup() {
