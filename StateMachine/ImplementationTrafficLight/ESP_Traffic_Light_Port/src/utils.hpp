@@ -53,6 +53,7 @@ std::ostream& operator << ( std::ostream& outs, const NormalRoutineTransition& p
 enum class NormalRoutineState
 {
     RED,
+    YELLOWRED,
     YELLOW,
     GREEN,
     ERROR

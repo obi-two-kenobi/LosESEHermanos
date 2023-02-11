@@ -22,6 +22,9 @@ public:
     void Delay(unsigned int milliseconds);
     
     void InitialFeedback();
+
+    void SetUpIO(int redLed, int greenLed, int yellowLed);
+    void WriteIO(int redLed, int greenLed, int yellowLed);
     
     
     

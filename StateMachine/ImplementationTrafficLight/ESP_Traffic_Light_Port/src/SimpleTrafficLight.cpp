@@ -39,28 +39,28 @@ void SimpleTrafficLight::Delay(unsigned int milliseconds)
 void SimpleTrafficLight::Feedback()
 {
     std::cout <<"[" << _name << "]->["<<_state <<"]->["<<_normalRoutineState << "] with "<<_transition<<std::endl;
-    digitalWrite(RED_LED, LOW);
-    digitalWrite(GREEN_LED, LOW);
-    digitalWrite(YELLOW_LED, LOW);
+    this->WriteIO(0,0,0);
     switch(_normalRoutineState){
         case NormalRoutineState::RED:
-            digitalWrite(RED_LED, HIGH);
+            this->WriteIO(1,0,0);
+            break;
+        case NormalRoutineState::YELLOWRED:
+            this->WriteIO(1,0,1);
             break;
         case NormalRoutineState::YELLOW:
-            digitalWrite(YELLOW_LED, HIGH);
+            this->WriteIO(0,0,1);
             break;
         case NormalRoutineState::GREEN:
-            digitalWrite(GREEN_LED, HIGH);
+            this->WriteIO(0,1,0);
             break;
         case NormalRoutineState::ERROR:
             while (true)
             {
-                digitalWrite(RED_LED, HIGH);
+                this->WriteIO(1,0,0);
                 this->Delay(1000);
-                digitalWrite(RED_LED, LOW);
+                this->WriteIO(0,0,0);
                 this->Delay(1000);
             }
-            
             break;
     }
 }
@@ -158,3 +158,28 @@ void SimpleTrafficLight::HandleTransition(Transition transition) {
 
 }
 
+void SimpleTrafficLight::SetUpIO(int redLed, int greenLed, int yellowLed) {
+    #ifdef ARDUINO
+        pinMode(redLed, OUTPUT);
+        pinMode(greenLed, OUTPUT);
+        pinMode(yellowLed, OUTPUT);
+    #elif defined(__linux__)
+        setUpSysfs(redLed, greenLed, yellowLed);
+    #elif defined(_WIN32)
+        setUpWinIo(redLed, greenLed, yellowLed);    
+    #endif
+}
+
+void SimpleTrafficLight::WriteIO(int redLedVal, int greenLedVal, int yellowLedVal) {
+    #ifdef ARDUINO
+        digitalWrite(RED_LED, redLedVal);
+        digitalWrite(GREEN_LED, greenLedVal);
+        digitalWrite(YELLOW_LED, yellowLedVal);
+
+    #elif defined(__linux__)
+        writeSysfs(redLedVal, greenLedVal, yellowLedVal);
+
+    #elif defined(_WIN32)
+        writeWinIo(redLedVal, greenLedVal, yellowLedVal);
+    #endif
+}
