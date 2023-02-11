@@ -1,43 +1,129 @@
-# LosESEHermanos
-
-## Task overview 
-
-### TASK 3
-- [X] Specify at least 10 requirements 
-- [X] Define the context / use cases of the system
-- [X] Refine three use cases with activity diagrams
-- [X] Based on this, define the analysis architecture (Context Diagram) with block diagrams (at least 10 blocks) and describe the main interaction with the environment with sequence diagrams
-
-### TASK 4
-- [X] Constraint the system with parametric constraint diagrams (at
-least 5 constraints)
-- [X] Allocate the diagrams to each other in an allocation diagram
-- [X] Refine the architecture (block diagrams) with the help of internal
-block diagrams (add at least 5 blocks)
-- [X] Define the behavior with state machines of at least 3 components
-- [X] Show / argument that the state machine behavior fulfills (refines) the interaction behavior (as modeled in the analysis phase)
-- [X] Show partly the implementation level of one block including the state machine behavior
-     - [X] Including the mapping to prototype Hardware (Arduino, Raspberry P, tinkercad) - Mapping should be done in a structured way ( Blocks, State machines, ...)
-### TASK 5
-#### SCHEDULING
-- [X] Brake down the specified requirements to the level of scheduling
-- [X] Define (test or analysis) the computation time (worst case) of the tasks of the component you implement
-- [X] Use pyCPA (https://pycpa.readthedocs.io/en/latest/) – if possible or calculate the wcet via knowledge of the hardware
-- [X] Specify all scheduling constraints based on the requirements
-- [X] Show that the implemented component with its set of tasks is scheduable (EDF or RMS or both).
-#### V& V
-##### INSPECTION
-- [X] All team members have to do one inspection of a document
-(Model, source code, ...) of an other team member
-     -  E.g. Team member A developed the requirements and team member B inspects the requirements
-- [ ] Documentation of inspection
-          - Describe shortly the inspected document including the review
-          - Positive and negative points
-          -Negative points should have influence of an updated version of the document
-##### TESTING
-
-- [X] Define and execute 5 unit tests as validation tests  E.g. use the Junit or Cunit Framework
-- [ ] Show the relation / trace to the requirements
-- [X] Define at least 5 defect test
-- [X] Define and execute 3 component / interface tests of the implemented block
-- [X] Implement a component/block in a test driven based way
+├── 01_EA projects
+│   ├── CompleteModel.xml
+│   ├── constraints.eapx
+│   └── constraints.ldb
+├── Activity Diagrams
+│   ├── Cycle Lights.jpg
+│   ├── Determine Routine.jpg
+│   ├── Driving.jpg
+│   ├── FollowSchedule.jpg
+│   └── Vehicle-Drive.jpg
+├── Allocation Diagram.jpg
+├── BDD
+│   ├── bdd Traffic Light 2.0.png
+│   ├── bdd Traffic Light.pdf
+│   ├── camera ibd.pdf
+│   ├── communication_module ibd.pdf
+│   ├── control unit ibd.pdf
+│   ├── lights ibd.pdf
+│   └── traffic_light.qea
+├── Context Diagram.jpg
+├── Measurements.py
+├── Overview-Sequence.jpg
+├── Par Diagrams Traffic Light
+│   ├── par Camera.pdf
+│   ├── par Communication Module.pdf
+│   ├── par Lights.pdf
+│   └── traffic_light.qea
+├── README.md
+├── Scheduling.py
+├── SequenceDigram
+│   ├── EA
+│   │   ├── SmartGarbage.eap
+│   │   ├── SmartGarbageInteractionWithTraficLight.eap
+│   │   ├── TrafficLightsRoutine.eap
+│   │   └── TrafficLightsRoutine2.0.eap
+│   ├── SmartGarbage.png
+│   ├── SmartGarbageInteractionWithTrafficLight.png
+│   ├── TrafficLightRoutine.png
+│   └── TrafficLightRoutineV2.png
+├── Service Vehicle
+│   ├── Service vehicle Power constraints
+│   │   ├── Jouls V2.jpg
+│   │   ├── Jouls.jpg
+│   │   ├── Power Constraints Diagram V2.jpg
+│   │   ├── Power Constraints Diagram.jpg
+│   │   ├── Power Managment Unit.jpg
+│   │   ├── Solar V2.jpg
+│   │   └── Solar.jpg
+│   ├── Service vehicle bdd .bmp
+│   └── Service vehicle ibd.bmp
+├── Sked
+│   ├── CPU Load 2.jpg
+│   ├── CPU Load.jpg
+│   ├── FirstBranch Task.jpg
+│   ├── SecondBranch Task.jpg
+│   ├── SwitchTime Task.jpg
+│   ├── TransitionTimeTask.jpg
+│   ├── Update Times Task.jpg
+│   ├── all.png
+│   └── configuration.json
+├── Smart Garbage Cans.docx
+├── StateMachine
+│   ├── BlinkingYellowRoutine.jpg
+│   ├── Driving.jpg
+│   ├── Emergency Vehicle.jpg
+│   ├── ImplementationTrafficLight
+│   │   ├── ESP_Traffic_Light_Port
+│   │   │   ├── include
+│   │   │   │   └── README
+│   │   │   ├── lib
+│   │   │   │   └── README
+│   │   │   ├── platformio.ini
+│   │   │   ├── src
+│   │   │   │   ├── SimpleTrafficLight.cpp
+│   │   │   │   ├── SimpleTrafficLight.hpp
+│   │   │   │   ├── main.cpp
+│   │   │   │   ├── utils.cpp
+│   │   │   │   └── utils.hpp
+│   │   │   └── test
+│   │   │       └── README
+│   │   ├── ImplementationTrafficLight
+│   │   │   ├── SimpleTrafficLight.cpp
+│   │   │   ├── SimpleTrafficLight.hpp
+│   │   │   ├── main.cpp
+│   │   │   ├── utils.cpp
+│   │   │   └── utils.hpp
+│   │   └── TL_Arduino
+│   │       └── TL_Arduino.ino
+│   ├── NormalDriving.jpg
+│   ├── NormalIntersectionBehaviour.jpg
+│   ├── NormalRoutineState
+│   │   └── NormalRoutineState.eapx
+│   ├── NormalRoutineState.png
+│   ├── NormalVehicle.jpg
+│   └── Traffic Light.jpg
+├── Traffic light ibd 2.0
+│   ├── ibd Camera 2.0.png
+│   ├── ibd Communication module 2.0.png
+│   ├── ibd Control unit 2.0.png
+│   └── ibd Lights 2.0.png
+├── Traffic light par 2.0
+│   ├── par Camera 2.0.png
+│   ├── par Communication Module 2.0.png
+│   └── par Lights 2.0.png
+├── TrafficLightCompl
+│   ├── CMakeLists.txt
+│   ├── Controller.cpp
+│   ├── Controller.hpp
+│   ├── README.md
+│   ├── TrafficLight.cpp
+│   ├── TrafficLight.hpp
+│   ├── TrafficLightThreads
+│   ├── Types.cpp
+│   ├── Types.hpp
+│   ├── VehicleTrafficLight.cpp
+│   ├── VehicleTrafficLight.hpp
+│   ├── include.h
+│   ├── launch.sh
+│   ├── main.cpp
+│   └── tests
+│       └── TrafficLightTest.cpp
+├── UseCases
+│   ├── UseCase1.jpg
+│   ├── UseCase2.jpg
+│   ├── UseCase3.jpg
+│   ├── UseCase4.png
+│   ├── UseCase5.png
+│   └── Usecase6.jpg
+└── Verifications.xlsx
